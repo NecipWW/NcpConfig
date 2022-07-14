@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="NcpConfig\Core\Content\Entities\Class1\ConfiguratorClassDefinition">
+            <tag name="shopware.entity.definition" entity="ncp_configurator_class"/>
+        </service>
+
+        <service id="NcpConfig\Core\Content\Entities\ClassCon\ConfiguratorClassConDefinition">
+            <tag name="shopware.entity.definition" entity="ncp_configurator_classcon"/>
+        </service>
+
+        <service id="NcpConfig\Core\Content\Entities\Object\ConfiguratorObjectDefinition">
+            <tag name="shopware.entity.definition" entity="ncp_configurator_object"/>
+        </service>
+
+        <service id="NcpConfig\Core\Content\Entities\ObjectCon\ConfiguratorObjectConDefinition">
+            <tag name="shopware.entity.definition" entity="ncp_configurator_objectcon"/>
+        </service>
+
+        <service id="NcpConfig\Subscriber\Frontend">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="ncp_configurator_classcon.repository"/>
+            <argument type="service" id="ncp_configurator_objectcon.repository"/>
+            <argument type="service" id="product_media.repository"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="NcpConfig\Controller\Storefront\NcpConfiguratorController" public="true">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\LineItemFactoryRegistry"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="NcpConfig\Core\Checkout\Cart\OverwritePriceCollector">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
+            <tag name="shopware.cart.processor" priority="4500"/>
+            <tag name="shopware.cart.collector" priority="4500"/>
+        </service>
+
+    </services>
+</container>

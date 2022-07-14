@@ -1,0 +1,21 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_doctype %}
+{% endblock %}
+
+{% block base_html %}
+{% endblock %}
+
+{% block base_head %}
+{% endblock %}
+
+{% block base_body %}
+    <div id="ncpConfiguratorfinish">
+        <h2>Ihr Produkt wurde in den Warenkorb gelegt.</h2>
+        <p>Was möchten Sie jetzt tun?</p>
+        <div class="button-row">
+            <a href="#" class="btn btn-secondary btn-lg" onclick="newConfiguration();" data-dismiss="modal">Weitere Konfiguration</a>
+            <a href="{{ path('frontend.checkout.cart.page') }}" class="btn btn-secondary btn-lg">Zum Warenkorb</a>
+        </div>
+    </div>
+{% endblock %}

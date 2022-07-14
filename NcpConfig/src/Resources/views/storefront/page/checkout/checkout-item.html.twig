@@ -1,0 +1,16 @@
+{% sw_extends '@Storefront/storefront/page/checkout/checkout-item.html.twig' %}
+
+
+{% block page_checkout_item %}
+    {{ parent() }}
+
+    {# >> NcpConfig #}
+    <label>ProjectGroup: {{ lineItem.payload.Configuration_ProjectGroup }}</label>
+    <br>
+    {% for keyDimension, valueDimension in lineItem.payload.Configuration_Dimension %}
+        <label>{{ keyDimension }} : {{ valueDimension }} mm</label> <br>
+    {% endfor %}
+    {# >> NcpConfig #}
+
+{% endblock %}
+

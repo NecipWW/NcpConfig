@@ -1,0 +1,29 @@
+<div class="configurator-content-wrapper">
+    <h2 class="configurator-content-title">Dimensionen</h2>
+
+    <div class="configurator-dimension-wrapper">
+        {% set projectGroupname = page.product.extensions.structConfigurator.ProjectGroupname  %}
+        <h1>{{ projectGroupname }}</h1>
+    </div>
+
+    {# {{ dump(page.product.extensions.structConfigurator) }}#}
+
+    {% for key, value in page.product.extensions.structConfigurator.arrDimension %}
+        <div>
+            <b>{{ key }}</b>
+            <label>min: {{ value['pgDmValueMin'] }}</label>
+            <label>max: {{ value['pgDmValueMax'] }}</label>
+
+            <input type="number"
+                   id="{{ key }}"
+                   class="dimension"
+                   min="{{ value['pgDmValueMin'] |number_format(0, ',', '') }}"
+                   max="{{ value['pgDmValueMax'] |number_format(0, ',', '') }}"
+                   step="1"
+                   value="{{ value['pgDmValueMin']|number_format(0, ',', '') }}"
+                   onchange="onChangeInput(this.id);"
+            >
+        </div>
+    {% endfor %}
+
+</div>

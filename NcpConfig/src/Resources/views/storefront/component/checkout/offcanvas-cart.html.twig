@@ -1,0 +1,27 @@
+{% sw_extends '@Storefront/storefront/component/checkout/offcanvas-cart.html.twig' %}
+
+{% block component_offcanvas_cart_item %}
+    {{ parent() }}
+
+    {#    <ol> #}
+    {#        {% for key, value in _context  %} #}
+    {#            <li>{{ key }}</li> #}
+    {#        {% endfor %} #}
+    {#    </ol> #}
+
+{#    {% for keyLineItem, valueLineItem in page.cart.lineItems %}#}
+{#        <label>keyLineItem: {{ keyLineItem }}</label>#}
+{#        {{ dump(valueLineItem.payload) }}#}
+
+{#        <label>ProjectGroup: {{ valueLineItem.payload.Configuration_ProjectGroup }}</label>#}
+
+{#        {% for keyDimension, valueDimension in valueLineItem.payload.Configuration_Dimension %}#}
+{#            <div>#}
+{#                <label>{{ keyDimension }} : {{ valueDimension }} mm</label>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    {% endfor %}#}
+
+{#    {{ dump(page.cart.lineItems) }}#}
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% block sw_product_settings_form_content %}
+    {% parent %}
+
+    <label>Konfigurator</label>
+
+    <sw-container
+            v-if="!isLoading"
+            columns="repeat(auto-fit, minmax(250px, 1fr)" gap="0px 30px">
+        <sw-field
+                type="select"
+                name="sw-field--product-ProjectGroup"
+                :value="idObjProjectGroup"
+                @change="onChangeProjectGroup">
+            <option
+                    v-for="ProjectGroup in ProjectGroups"
+                    :key="ProjectGroup.id"
+                    :value="ProjectGroup.id"
+                    :selected="idObjProjectGroup === ProjectGroup.id"
+            >
+                {{ ProjectGroup.title }}
+            </option>
+        </sw-field>
+    </sw-container>
+
+{% endblock %}
